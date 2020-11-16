@@ -49,7 +49,7 @@ public class DemoController {
     mailMessage.setSubject("Spring Boot自动发送的邮件");
     mailMessage.setText("这是一封自动发送的邮件");
     mailMessage.setTo("leelean2019@163.com");
-    mailMessage.setFrom("987631721@qq.com");
+    mailMessage.setFrom("xxxxxx@qq.com");
 
     mailSender.send(mailMessage);
     return ResultUtil.success().render("邮件发送成功");
