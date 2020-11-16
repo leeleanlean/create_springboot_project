@@ -4,6 +4,9 @@ import com.example.learn.utils.ResultUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,9 @@ public class DemoController {
   // Logger
   Logger logger = LoggerFactory.getLogger(getClass());
 
+  @Autowired
+  JavaMailSenderImpl mailSender;
+
   /**
    * 输出日志
    * @return
@@ -31,6 +37,22 @@ public class DemoController {
     logger.warn("...warn...");
     logger.error("...error...");
     return ResultUtil.success().render("打印日志成功");
+  }
+
+  /**
+   * 发送邮件
+   * @return
+   */
+  @GetMapping("/mail")
+  public ResultUtil mail() {
+    SimpleMailMessage mailMessage = new SimpleMailMessage();
+    mailMessage.setSubject("Spring Boot自动发送的邮件");
+    mailMessage.setText("这是一封自动发送的邮件");
+    mailMessage.setTo("leelean2019@163.com");
+    mailMessage.setFrom("987631721@qq.com");
+
+    mailSender.send(mailMessage);
+    return ResultUtil.success().render("邮件发送成功");
   }
 
   /**
