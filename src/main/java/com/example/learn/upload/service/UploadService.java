@@ -30,7 +30,6 @@ public class UploadService {
    * @return
    */
   public ResultUtil uploadFile(MultipartFile file) {
-    System.out.println(file);
     if (file.isEmpty()) {
       return ResultUtil.error("文件参数<file>不能为空");
     }

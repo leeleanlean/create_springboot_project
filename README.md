@@ -675,7 +675,6 @@ public class UserController {
    */
   @DeleteMapping("/{id}")
   public ResultUtil delete(@PathVariable Long id) {
-    System.out.println();
     return userService.delete(id);
   }
 
@@ -806,7 +805,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 }
 ```
 
-# 文件上传
+# 7. 文件上传
 
 1. application.properties
 ```
@@ -897,7 +896,6 @@ public class UploadService {
    * @return
    */
   public ResultUtil uploadFile(MultipartFile file) {
-    System.out.println(file);
     if (file.isEmpty()) {
       return ResultUtil.error("文件参数<file>不能为空");
     }
